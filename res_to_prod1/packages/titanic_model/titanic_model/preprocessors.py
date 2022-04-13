@@ -29,7 +29,6 @@ class NumericalImputer(BaseEstimator, TransformerMixin):
         X = X.copy()
         for feature in self.variables:
             X[feature].fillna(self.imputer_dict_[feature], inplace=True)
-        print("aaaa")
         return X
 
 
@@ -53,10 +52,79 @@ class CategoricalImputer(BaseEstimator, TransformerMixin):
         X = X.copy()
         for feature in self.variables:
             X[feature] = X[feature].fillna('Missing')
-        print("bbbbbbb")
         return X
 
-#
+
+'''
+    Odstranenie rare labels
+'''
+
+
+class RareLabels(BaseEstimator, TransformerMixin):
+
+    def __init__(self, variables=None, frequentLabels=None, target=None, rare_perc=None):
+        if not isinstance(variables, list):
+            self.variables = [variables]
+        else:
+            self.variables = variables
+        self.frequentLabels = frequentLabels
+        self.target = target
+        self.rare_perc = rare_perc
+        self.rare_dict_ = {}
+
+    def fit(self, X, y=None):
+        X = X.copy()
+        tmp = None
+        for var in self.variables:
+            tmp = X.groupby(var)[self.target].count() / len(X)
+
+        self.rare_dict_ = tmp[tmp > self.rare_perc].index
+        return self
+
+    def transform(self, X):
+        X = X.copy()
+        for var in self.variables:
+            X[var] = np.where(X[var].isin(self.rare_dict_), X[var], 'Rare')
+        return X
+
+
+class EncodingCategories(BaseEstimator, TransformerMixin):
+
+    def __init__(self, variables=None, mappings=None):
+        if not isinstance(variables, list):
+            self.variables = [variables]
+        else:
+            self.variables = variables
+        self.mappings = mappings
+
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X):
+        X = X.copy()
+        for var in self.variables:
+            X[var] = X[var].map(self.mappings[var])
+        return X
+
+
+class DropAttributes(BaseEstimator, TransformerMixin):
+
+    def __init__(self, variables=None):
+        if not isinstance(variables, list):
+            self.variables = [variables]
+        else:
+            self.variables = variables
+
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X):
+        X = X.copy()
+        for feature in self.variables:
+            X.drop(feature, inplace=True, axis=1)
+        print(X)
+        return X
+
 # '''
 #     Zmena na int datovy typ
 # '''
