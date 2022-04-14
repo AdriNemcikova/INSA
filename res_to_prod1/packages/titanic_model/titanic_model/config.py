@@ -6,25 +6,38 @@ TRAINED_MODEL_DIR = PACKAGE_ROOT / 'trained_models'
 DATASET_DIR = PACKAGE_ROOT / 'datasets'
 MODEL_NAME = "survived_model.pkl"
 
-TESTING_DATA_FILE = DATASET_DIR / 'test.csv'
 TRAINING_DATA_FILE = DATASET_DIR / 'train.csv'
+TESTING_DATA_FILE = DATASET_DIR / 'test.csv'
 
 TARGET = 'Survived'
 
-FEATURES = [ 'Survived', 'Pclass', 'Sex', 'SibSp', 'Age', 'Cabin', 'Embarked']
-
+FEATURES = [
+    "Pclass",
+    "Name",
+    "Sex",
+    "Age",
+    "SibSp",
+    "Parch",
+    "Ticket",
+    "Fare",
+    "Cabin",
+    "Embarked",
+]
 CATEGORICAL_NA_VARS = ['Cabin', 'Embarked']
+NUMERICAL_NA_VARS = ['Age', 'Embarked']
 
-CATEGORICAL_RARE = ['Cabin', 'Embarked']
+FAMILY_SIZE_VARS = ["SibSp", "Parch"]
+OUTPUT = ["Number_of_relatives", "Alone_y_n"]
 
-NUMERICAL_NA_VARS = ['Age']
-
-RARE_PERC = 0.01
-
-CATEGORICAL_ENCODE = ['Sex', 'Cabin', 'Embarked']
-
+CATEGORICAL_ENCODE = ['Sex', 'Embarked']
 ENCODING_MAPPINGS = {'Sex': {'male': 0, 'female': 1},
-                     'Cabin': {'Missing': 0, 'Rare': 1},
-                     'Embarked': {'S': 0, 'Q': 1, 'C': 2, 'Rare': 3}}
+                     'Embarked': {'S': 0, 'Q': 1, 'C': 2}}
 
-DROP_ATTRIBUTES = ['Survived']
+TITLE_EXTRACTION = ["Name"]
+TITLES_ENCODING = {"Mr": 1, "Miss": 2, "Mrs": 3, "Master": 4, "Other": 5}
+
+DROP_ATTRIBUTES = ['Name', 'Ticket', 'Cabin']
+
+TO_INTEGER = ["Age", "Fare", "Embarked", "Alone_y_n", "Title"]
+
+ALL = ['Pclass','Sex', 'Age', 'SibSp', 'Parch', 'Fare', 'Embarked', 'Number_of_relatives', 'Alone_y_n', 'Title']

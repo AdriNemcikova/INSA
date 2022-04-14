@@ -14,16 +14,17 @@ def save_pipeline(pipeline_to_save):
     joblib.dump(pipeline_to_save, save_path)
     print("model saved")
 
+
 def run_training():
     print('training started')
     data = pd.read_csv(config.DATASET_DIR / config.TRAINING_DATA_FILE, encoding='utf-8')
     X_train, X_test, y_train, y_test = train_test_split(data[config.FEATURES], data[config.TARGET], test_size = 0.1, random_state=0)
 
     pipeline.survived_pipe.fit(X_train[config.FEATURES], y_train)
-
-    print('training ended')
     save_pipeline(pipeline.survived_pipe)
-    predict.make_prediction(X_test, y_test)
+    print('training ended')
+
+    # predict.make_prediction(X_test, y_test)
 
 
 if __name__ == '__main__':
