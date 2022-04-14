@@ -41,3 +41,9 @@ DROP_ATTRIBUTES = ['Name', 'Ticket', 'Cabin']
 TO_INTEGER = ["Age", "Fare", "Embarked", "Alone_y_n", "Title"]
 
 ALL = ['Pclass','Sex', 'Age', 'SibSp', 'Parch', 'Fare', 'Embarked', 'Number_of_relatives', 'Alone_y_n', 'Title']
+
+NUMERICALS_VARS = ["Pclass", "Age", "SibSp", "Parch", "Fare"]
+VARS_WITH_NA = ["Age", "Cabin", "Embarked"]
+
+NA_NOT_ALLOWED = [feature for feature in FEATURES if feature not in VARS_WITH_NA]
+
