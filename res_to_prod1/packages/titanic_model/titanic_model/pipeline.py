@@ -15,7 +15,6 @@ survived_pipe = Pipeline(
         ("drop_atr", pp.DropAttributes(variables=config.DROP_ATTRIBUTES)),
         ("show", pp.Na_control(variables=config.ALL)),
         ("to_int", pp.ToInteger(variables=config.TO_INTEGER)),
-
         ('scaler', MinMaxScaler()),
         ('linear_regression_model', LogisticRegression())
     ])
