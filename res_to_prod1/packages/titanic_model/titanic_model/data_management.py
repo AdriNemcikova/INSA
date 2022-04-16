@@ -2,7 +2,7 @@ import joblib
 import pandas as pd
 import logging
 
-from titanic_model import config
+from titanic_model.config import config
 from titanic_model import __version__ as _version
 
 _logger = logging.getLogger(__name__)

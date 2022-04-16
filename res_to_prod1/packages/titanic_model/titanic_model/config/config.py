@@ -1,6 +1,7 @@
 import pathlib
+import titanic_model
 
-PACKAGE_ROOT = pathlib.Path(__file__).resolve().parent
+PACKAGE_ROOT = pathlib.Path(titanic_model.__file__).resolve().parent
 
 TRAINED_MODEL_DIR = PACKAGE_ROOT / 'trained_models'
 DATASET_DIR = PACKAGE_ROOT / 'datasets'

@@ -1,5 +1,4 @@
-import pandas as pd
-from titanic_model import config
+from titanic_model.config import config
 
 
 def validate_inputs(input_data):

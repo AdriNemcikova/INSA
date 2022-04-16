@@ -1,10 +1,7 @@
-import pathlib
-import pandas as pd
-import numpy as np
-
 from sklearn.model_selection import train_test_split
-
-from titanic_model import pipeline, config, predict, data_management
+from titanic_model import pipeline
+from titanic_model.config import config
+from titanic_model import data_management
 
 
 def run_training():

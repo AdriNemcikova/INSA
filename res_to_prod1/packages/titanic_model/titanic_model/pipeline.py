@@ -3,7 +3,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.linear_model import LogisticRegression
 
 import titanic_model.preprocessors as pp
-from titanic_model import config
+from titanic_model.config import config
 
 survived_pipe = Pipeline(
     [

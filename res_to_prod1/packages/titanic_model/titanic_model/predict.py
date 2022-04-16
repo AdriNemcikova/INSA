@@ -1,8 +1,8 @@
 import pandas as pd
-import joblib
 import logging
 
-from titanic_model import config, data_management,validation
+from titanic_model import data_management,validation
+from titanic_model.config import config
 from titanic_model import __version__ as _version
 
 _logger = logging.getLogger(__name__)

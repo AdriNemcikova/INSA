@@ -1,8 +1,8 @@
 import logging
-from titanic_model import config
-from titanic_model import logging_config
+from titanic_model.config import config as c
+from titanic_model.config import logging_config
 
-VERSION_PATH = config.PACKAGE_ROOT / 'VERSION'
+VERSION_PATH = c.PACKAGE_ROOT / 'VERSION'
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
