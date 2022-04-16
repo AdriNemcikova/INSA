@@ -1,27 +1,17 @@
-
+import pandas as pd
 import joblib
 from sklearn.metrics import confusion_matrix
-from titanic_model import config, data_management
+from titanic_model import config, data_management,validation
 
 _survived_pipe = data_management.load_pipeline()
 
 
-def make_prediction(Xtest_data, ytest_data):
-    Xtest = Xtest_data
-    ytest = ytest_data
-    prediction = _survived_pipe.predict(Xtest[config.FEATURES])
+def make_prediction(input_data): # Xtest_data, ytest_data
+    data = pd.read_json(input_data)
+    validated_data = validation.validate_inputs(data)
+    # Xtest = input_data
+    # ytest = ytest_data
+    prediction = _survived_pipe.predict(validated_data[config.FEATURES])
     output = prediction
-    response = {"prediction": output
-                }
-    TN, FP, FN, TP = confusion_matrix(ytest, prediction).ravel()
-
-    print('True Positive(TP)  = ', TP)
-    print('False Positive(FP) = ', FP)
-    print('True Negative(TN)  = ', TN)
-    print('False Negative(FN) = ', FN)
-
-    accuracy = (TP + TN) / (TP + FP + TN + FN)
-
-    print('Accuracy of the binary classification = {:0.3f}'.format(accuracy))
-
+    response = {"predictions": output}
     return response

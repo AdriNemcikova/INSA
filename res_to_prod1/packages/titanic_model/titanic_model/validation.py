@@ -1,11 +1,11 @@
-from titanic_model import config
 import pandas as pd
+from titanic_model import config
 
 
 def validate_inputs(input_data):
     validated_data = input_data.copy()
 
-    # vsetky hodnoty stlpcov nesmu byt zaporne
+    # vsetky hodnotu musia byt kladne
     if (input_data[config.NUMERICALS_VARS] < 0).any().any():
         vars_with_neg_values = config.NUMERICALS_VARS[
             (input_data[config.NUMERICALS_VARS] < 0).any()

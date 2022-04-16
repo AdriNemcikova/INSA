@@ -27,7 +27,7 @@ class NumericalImputer(BaseEstimator, TransformerMixin):
         X = X.copy()
         for feature in self.variables:
             X[feature].fillna(self.imputer_dict_[feature], inplace=True)
-        print("doplnenie veku: ", X)
+        print("doplnenie veku:\n", X)
         return X
 
 
@@ -49,7 +49,7 @@ class CategoricalImputer(BaseEstimator, TransformerMixin):
         X = X.copy()
         for feature in self.variables:
             X[feature] = X[feature].fillna('Missing')
-        print("doplnenie missing: ", X)
+        print("doplnenie missing:\n", X)
         return X
 
 
@@ -82,7 +82,7 @@ class MergeAttributes(BaseEstimator, TransformerMixin):
         X[self.output[0]] = sum_column
         X.loc[X[self.output[0]] > 0, self.output[1]] = 0
         X.loc[X[self.output[0]] == 0, self.output[1]] = 1
-        print("doplnenie rodiny: \n",X)
+        print("doplnenie rodiny:\n",X)
         return X
 
 
@@ -105,7 +105,7 @@ class EncodingCategories(BaseEstimator, TransformerMixin):
         X = X.copy()
         for var in self.variables:
             X[var] = X[var].map(self.mappings[var])
-        print("after encoding: \n", X)
+        print("after encoding:\n", X)
         return X
 
 
@@ -137,7 +137,7 @@ class ExtractTitles(BaseEstimator, TransformerMixin):
         X['Title'] = X['Title'].replace('Mme', 'Mrs')
         X['Title'] = X['Title'].map(self.titles)
         X['Title'] = X['Title'].fillna(0)
-        print("titles encoding \n", X)
+        print("titles encoding:\n", X)
         return X
 
 '''
@@ -158,7 +158,7 @@ class DropAttributes(BaseEstimator, TransformerMixin):
         X = X.copy()
         for feature in self.variables:
             X.drop(feature, inplace=True, axis=1)
-        print("after drop: \n", X)
+        print("after drop:\n", X)
         return X
 
 '''
@@ -178,6 +178,7 @@ class Na_control(BaseEstimator, TransformerMixin):
         X = X.copy()
         for feature in self.variables:
             X[feature] = X[feature].fillna(0)
+        print("Kontrola na hodnot:\n", X)
         return X
 
 
@@ -198,7 +199,7 @@ class ToInteger(BaseEstimator, TransformerMixin):
         X = X.copy()
         for feature in self.variables:
             X[feature] = X[feature].astype(int)
-        print("after to int: \n", X)
+        print("after to int:\n", X)
         return X
 
 
