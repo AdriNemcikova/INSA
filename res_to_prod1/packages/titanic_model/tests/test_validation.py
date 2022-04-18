@@ -6,6 +6,9 @@ def test_validation_na():
     test_data = load_dataset('train.csv')
     test_data = test_data[:10]
 
+    validated_data = validate_inputs(test_data)
+    assert len(validated_data) == 10
+
     assert len(test_data) == 10
     assert "Pclass" in test_data.columns
     assert test_data["Pclass"].isnull().sum() == 0

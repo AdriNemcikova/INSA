@@ -65,3 +65,16 @@ def test_pipeline_transform_family_size():
 
     for i in X_transformed["Alone_y_n"]:
         assert int(i) in range(0,2)
+
+
+
+def test_number_of_cols_after_prep():
+    test_data = load_dataset('train.csv')
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        test_data, test_data[config.TARGET], test_size=0.1, random_state=0
+    )
+
+    transformer = pp.DropAttributes(variables=config.DROP_ATTRIBUTES)
+    X_transformed = transformer.transform(X_train)
+    assert len(X_transformed.columns) != len(config.FEATURES)
