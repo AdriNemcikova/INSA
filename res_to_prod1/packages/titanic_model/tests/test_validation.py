@@ -11,11 +11,9 @@ def test_validation_na():
     assert test_data["Pclass"].isnull().sum() == 0
 
     test_data['Pclass'][0] = None
-
     assert test_data["Pclass"].isnull().sum() == 1
 
     validated_data = validate_inputs(test_data)
-
     assert validated_data["Pclass"].isnull().sum() == 0
 
     validated_data = validate_inputs(test_data)

@@ -178,7 +178,7 @@ class Na_control(BaseEstimator, TransformerMixin):
         X = X.copy()
         for feature in self.variables:
             X[feature] = X[feature].fillna(0)
-        # print("Kontrola na hodnot:\n", X)
+        print("Kontrola na hodnot:\n", X)
         return X
 
 
@@ -199,7 +199,7 @@ class ToInteger(BaseEstimator, TransformerMixin):
         X = X.copy()
         for feature in self.variables:
             X[feature] = X[feature].astype(int)
-        # print("after to int:\n", X)
+        print("after to int:\n", X)
         return X
 
 
