@@ -57,7 +57,7 @@ def test_pipeline_transform_family_size():
         test_data, test_data[config.TARGET], test_size=0.1, random_state=0
     )
 
-    transformation =  pp.MergeAttributes(variables=config.FAMILY_SIZE_VARS, output=config.OUTPUT)
+    transformation = pp.MergeAttributes(variables=config.FAMILY_SIZE_VARS, output=config.OUTPUT)
     X_transformed = transformation.transform(X_train)
 
     assert "Number_of_relatives" in X_transformed.columns
@@ -66,6 +66,19 @@ def test_pipeline_transform_family_size():
     for i in X_transformed["Alone_y_n"]:
         assert int(i) in range(0,2)
 
+
+def test_pipeline_categorical_encoding():
+    test_data = load_dataset('train.csv')
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        test_data, test_data[config.TARGET], test_size=0.1, random_state=0)
+
+    transformation = pp.EncodingCategories(variables=config.CATEGORICAL_ENCODE, mappings=config.ENCODING_MAPPINGS)
+    X_transformed = transformation.transform(X_train)
+
+    assert "Sex" in X_transformed.columns
+    for i in X_transformed["Sex"]:
+        assert i in range(0, 2)
 
 
 def test_number_of_cols_after_prep():
