@@ -1,4 +1,4 @@
 # api
-flask==1.0.2
+flask==2.1.1
 
--e "./res_to_prod1/packages/titanic_model"
+# -e "./res_to_prod1/packages/titanic_model"
