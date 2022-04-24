@@ -12,10 +12,10 @@ jobs:
             virtualenv venv
             . venv/bin/activate
             pip install --upgrade pip
-            pip install -r packages/titanic_model/requirements.txt
-            pip install -e ./packages/titanic_model
-            python packages/titanic_model/titanic_model/train_pipeline.py
-            py.test -vv packages/titanic_model/tests
+            pip install -r res_to_prod1/packages/titanic_model/requirements.txt
+            pip install -e  ./res_to_prod1/packages/titanic_model
+            python  res_to_prod1/packages/titanic_model/titanic_model/train_pipeline.py
+            py.test -vv  res_to_prod1/packages/titanic_model/tests
   test_ml_api:
     working_directory: ~/project
     docker:
@@ -28,10 +28,10 @@ jobs:
             virtualenv venv
             . venv/bin/activate
             pip install --upgrade pip
-            pip install -r packages/ml_api/requirements.txt
-            pip install -e ./packages/titanic_model
-            python packages/titanic_model/titanic_model/train_pipeline.py
-            py.test -vv packages/ml_api/tests
+            pip install -r  res_to_prod1/packages/ml_api/requirements.txt
+            pip install -e ./res_to_prod1/packages/titanic_model
+            python  res_to_prod1/packages/titanic_model/titanic_model/train_pipeline.py
+            py.test -vv  res_to_prod1/packages/ml_api/tests
 workflows:
   version: 2
   test-all:
